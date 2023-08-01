@@ -1,0 +1,29 @@
+name: "Main"
+on: pull_request
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: ".nvmrc"
+          cache: "npm"
+      - name: Install dependencies
+        run: npm ci
+      - name: Run ESLint
+        run: npm run lint:scripts
+      - name: Run Stylelint
+        run: npm run lint:styles
+      - name: Run Tests
+        run: npm test
+        env:
+          CI: true
+      - name: Run Cypress
+        uses: cypress-io/github-action@v5
+        with:
+          build: npm run build
+          start: npm run serve -- --port=5173
+          wait-on: 'http://127.0.0.1:5173'
+          browser: chrome
