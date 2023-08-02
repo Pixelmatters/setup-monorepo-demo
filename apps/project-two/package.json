@@ -13,7 +13,8 @@
     "lint:scripts": "TIMING=1 eslint --ext .ts,.tsx .",
     "lint:styles": "stylelint \"src/**/*.css\"",
     "test": "jest",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "release": "semantic-release -e semantic-release-monorepo"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -37,6 +38,7 @@
     "jest-environment-jsdom": "^29.6.2",
     "prettier-config": "^1.0.0",
     "release-config": "^1.0.0",
+    "semantic-release-monorepo": "^7.0.5",
     "stylelint-config": "^1.0.0",
     "ts-jest": "^29.1.1",
     "typescript": "^5.1.6",

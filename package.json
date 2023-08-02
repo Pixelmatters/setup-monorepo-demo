@@ -12,7 +12,8 @@
     "dev": "turbo dev --parallel --continue",
     "build": "turbo build",
     "test": "turbo test",
-    "lint": "turbo lint"
+    "lint": "turbo lint",
+    "release": "turbo release --concurrency=1"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.6.7",
