@@ -1,0 +1,26 @@
+{
+  "name": "design-system",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "devDependencies": {
+    "@storybook/addon-essentials": "^7.2.0",
+    "@storybook/addon-interactions": "^7.2.0",
+    "@storybook/addon-links": "^7.2.0",
+    "@storybook/addon-onboarding": "^1.0.8",
+    "@storybook/blocks": "^7.2.0",
+    "@storybook/react": "^7.2.0",
+    "@storybook/react-vite": "^7.2.0",
+    "@storybook/testing-library": "^0.2.0",
+    "eslint-config": "^1.0.0",
+    "prettier-config": "^1.0.0",
+    "storybook": "^7.2.0"
+  },
+  "scripts": {
+    "dev": "storybook dev -p 6006",
+    "build": "storybook build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
