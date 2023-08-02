@@ -1,7 +1,7 @@
 name: "Main"
 on: pull_request
 jobs:
-  lint-and-test:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -12,18 +12,40 @@ jobs:
           cache: "npm"
       - name: Install dependencies
         run: npm ci
-      - name: Run ESLint
-        run: npm run lint:scripts
-      - name: Run Stylelint
-        run: npm run lint:styles
+      - name: Run Linters
+        run: npm run lint
+
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        project: [project-one, project-two]
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: ".nvmrc"
+          cache: "npm"
+      - name: Install dependencies
+        run: npm ci
       - name: Run Tests
-        run: npm test
+        run: npm test -- --filter="{${{ matrix.project }}}..."
         env:
           CI: true
+      - name: Install Cypress dependencies
+        uses: cypress-io/github-action@v5
+        with:
+          # just perform install
+          runTests: false
       - name: Run Cypress
         uses: cypress-io/github-action@v5
         with:
           build: npm run build
           start: npm run serve -- --port=5173
-          wait-on: 'http://127.0.0.1:5173'
+          wait-on: "http://127.0.0.1:5173"
           browser: chrome
+          # we have already installed all dependencies above
+          install: false
+          working-directory: apps/${{ matrix.project }}
