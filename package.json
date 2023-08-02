@@ -8,12 +8,17 @@
     "packages/*"
   ],
   "scripts": {
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "dev": "turbo dev --parallel --continue",
+    "build": "turbo build",
+    "test": "turbo test",
+    "lint": "turbo lint"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.6.7",
     "@commitlint/config-conventional": "^17.6.7",
-    "husky": "^8.0.3"
+    "husky": "^8.0.3",
+    "turbo": "^1.10.12"
   },
   "keywords": [],
   "author": "",

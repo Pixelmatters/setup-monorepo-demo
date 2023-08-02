@@ -9,7 +9,8 @@
     "dev": "vite --host",
     "build": "vite build",
     "serve": "vite preview --host",
-    "lint:scripts": "eslint --ext .ts,.tsx .",
+    "lint": "npm run lint:scripts && npm run lint:styles",
+    "lint:scripts": "TIMING=1 eslint --ext .ts,.tsx .",
     "lint:styles": "stylelint \"src/**/*.css\"",
     "test": "jest",
     "cypress:open": "cypress open"
